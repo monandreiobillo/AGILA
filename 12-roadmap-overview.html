@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAFAFA">
+<title>Preparing for my first job · AGILA prototype</title>
+<style>
+:root{
+  --red:#B91C1C; --red-dark:#991B1B; --burgundy:#6B2528; --rose:#FDE7E7;
+  --bg:#FAFAFA; --surface:#FFFFFF; --text:#1F2937; --muted:#6B7280;
+  --border:#E5E7EB; --done:#F3F4F6; --done-text:#6B7280;
+  --info-bg:#F8FAFC; --amber-bg:#FFF7ED; --amber-border:#FED7AA; --amber-text:#7C2D12;
+  --radius:16px; --radius-sm:12px; --pad:20px; --nav-h:68px;
+  --focus:0 0 0 3px #FFFFFF, 0 0 0 5px #B91C1C;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.5;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.app{max-width:430px;min-height:100vh;min-height:100dvh;margin:0 auto;
+  display:flex;flex-direction:column;background:var(--bg);position:relative}
+.app.has-nav{padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom))}
+main{flex:1;padding:8px var(--pad) 28px;display:flex;flex-direction:column;min-width:0}
+h1,h2,h3,p{margin:0}
+h1{font-size:26px;line-height:1.2;font-weight:700;letter-spacing:-.01em}
+h2{font-size:18px;line-height:1.3;font-weight:650}
+h3{font-size:16px;line-height:1.35;font-weight:650}
+p{font-size:15px}
+a{color:var(--red);text-underline-offset:2px}
+a:hover{color:var(--red-dark)}
+.muted{color:var(--muted)}
+.helper{font-size:12px;color:var(--muted);line-height:1.45}
+.lede{font-size:15px;color:var(--muted);margin-top:8px}
+.stack>*+*{margin-top:12px}
+.section{margin-top:24px}
+.section>h2{margin-bottom:10px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus{outline:none}
+:focus-visible{outline:none;box-shadow:var(--focus);border-radius:10px}
+a:focus-visible{border-radius:4px}
+
+/* ---------- Top bars ---------- */
+.topbar{display:flex;align-items:center;gap:8px;padding:10px 12px 4px;min-height:56px}
+.topbar .spacer{flex:1}
+.topbar .title{flex:1;text-align:center;font-size:15px;font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
+  border:0;background:transparent;border-radius:999px;color:var(--text);cursor:pointer;text-decoration:none;flex:none}
+.icon-btn:hover{background:#F1F1F1}
+.icon-btn svg{width:22px;height:22px}
+.text-btn{background:none;border:0;color:var(--muted);font:inherit;font-size:14px;font-weight:600;
+  padding:10px 8px;cursor:pointer;border-radius:8px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.text-btn:hover{color:var(--text)}
+.brandbar{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad) 6px;min-height:56px}
+.wordmark{display:inline-flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.08em;font-size:14px;color:var(--burgundy)}
+.wordmark .mark{width:26px;height:26px;border-radius:8px;border:1.5px dashed #C9A3A5;display:inline-flex;
+  align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#A7787B;letter-spacing:0}
+
+/* ---------- Progress (onboarding) ---------- */
+.progress-head{padding:0 var(--pad);margin-top:2px}
+.progress-meta{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--muted);margin-bottom:8px}
+.progress-meta strong{color:var(--text);font-weight:600}
+.bar{height:6px;background:#EDEDED;border-radius:999px;overflow:hidden}
+.bar>span{display:block;height:100%;background:var(--red);border-radius:999px;transition:width .25s ease}
+.segments{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.segments span{height:6px;border-radius:999px;background:#E9E9E9}
+.segments span.on{background:var(--red)}
+
+/* ---------- Buttons ---------- */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;
+  padding:12px 20px;border-radius:999px;font:inherit;font-size:16px;font-weight:650;cursor:pointer;
+  text-decoration:none;border:1.5px solid transparent;transition:background .15s,border-color .15s,color .15s;text-align:center}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red-dark);color:#fff}
+.btn-primary[disabled]{background:#E5B4B4;cursor:not-allowed}
+.btn-secondary{background:var(--surface);color:var(--burgundy);border-color:#D9C2C3}
+.btn-secondary:hover{background:var(--rose);color:var(--burgundy)}
+.btn-ghost{background:transparent;color:var(--burgundy)}
+.btn-ghost:hover{background:var(--rose);color:var(--burgundy)}
+.btn-sm{min-height:44px;font-size:14px;padding:10px 16px;width:auto}
+.btn svg{width:18px;height:18px;flex:none}
+.actions{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px}
+.actions .helper{text-align:center}
+
+/* ---------- Cards / notices ---------- */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.card+.card{margin-top:12px}
+.card-label{font-size:12px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.notice{display:flex;gap:10px;align-items:flex-start;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5}
+.notice svg{width:18px;height:18px;flex:none;margin-top:1px}
+.notice p{font-size:13px}
+.notice p+p,.notice ul,.notice ul+p{margin-top:6px}
+.notice ul{padding-left:18px;margin-bottom:0}
+.notice li+li{margin-top:2px}
+.notice strong{font-weight:650}
+.notice-rose{background:var(--rose);color:#5B1F22;border:1px solid #F5C9C9}
+.notice-rose a{color:#8E1B1B}
+.notice-info{background:var(--info-bg);color:#374151;border:1px solid var(--border)}
+.notice-amber{background:var(--amber-bg);color:var(--amber-text);border:1px solid var(--amber-border)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;line-height:1;
+  padding:5px 8px;border-radius:999px;white-space:nowrap}
+.badge svg{width:12px;height:12px}
+.badge-online{background:#EEF2FF;color:#3730A3}
+.badge-person{background:#ECFDF5;color:#065F46}
+.badge-illus{background:var(--amber-bg);color:var(--amber-text);border:1px solid var(--amber-border)}
+.badge-waiver{background:var(--rose);color:var(--burgundy)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+
+/* ---------- Option rows (radio) ---------- */
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4px}
+.options{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.opt{display:flex;align-items:center;gap:12px;min-height:52px;padding:12px 14px;background:var(--surface);
+  border:1.5px solid var(--border);border-radius:14px;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:#D4D4D8}
+.opt input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin:0;border:2px solid #9CA3AF;
+  border-radius:50%;display:grid;place-content:center;background:#fff;cursor:pointer}
+.opt input::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--red);transform:scale(0);transition:transform .12s}
+.opt input:checked{border-color:var(--red)}
+.opt input:checked::before{transform:scale(1)}
+.opt input:focus-visible{box-shadow:var(--focus)}
+.opt:has(input:checked){border-color:var(--red);background:#FFFBFB}
+.opt-text{display:flex;flex-direction:column;min-width:0}
+.opt-title{font-size:15px;font-weight:600;line-height:1.35}
+.opt-desc{font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
+.opt-group+.opt-group{margin-top:28px}
+.optional-tag{display:inline-block;font-size:12px;font-weight:600;color:var(--muted);background:#F1F1F1;
+  border-radius:999px;padding:3px 8px;margin-bottom:10px}
+.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#F3F4F6;padding:4px;border-radius:14px}
+.segmented label{position:relative;display:flex}
+.segmented input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.segmented span{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;min-height:44px;
+  padding:6px 4px;border-radius:10px;font-size:13px;font-weight:600;color:var(--muted);line-height:1.2}
+.segmented input:checked+span{background:#fff;color:var(--red);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.segmented input:focus-visible+span{box-shadow:var(--focus)}
+
+/* ---------- Inputs ---------- */
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;font-weight:600}
+.input,.textarea{width:100%;font:inherit;font-size:16px;color:var(--text);background:var(--surface);
+  border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;min-height:50px}
+.textarea{resize:vertical;line-height:1.5}
+.input:focus-visible,.textarea:focus-visible{border-color:var(--red);box-shadow:0 0 0 3px rgba(185,28,28,.18);border-radius:14px}
+.input::placeholder,.textarea::placeholder{color:#9CA3AF}
+
+/* ---------- Checkbox rows ---------- */
+.check{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;margin:0;border:2px solid #9CA3AF;
+  border-radius:7px;background:#fff;display:grid;place-content:center;cursor:pointer;transition:background .15s,border-color .15s}
+.check::before{content:"";width:12px;height:7px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;
+  transform:rotate(-45deg) translate(1px,-1px) scale(0);transition:transform .12s}
+.check:checked{background:var(--red);border-color:var(--red)}
+.check:checked::before{transform:rotate(-45deg) translate(1px,-1px) scale(1)}
+.check:focus-visible{box-shadow:var(--focus)}
+.tasklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;transition:background .15s}
+.task label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;flex:1;min-width:0}
+.task .check{margin-top:1px}
+.task .task-text{font-size:14px;line-height:1.5}
+.task .task-text small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.task.is-done{background:var(--done);border-color:var(--done)}
+.task.is-done .task-text{color:var(--done-text)}
+.task.is-done .task-text>span{text-decoration:line-through;text-decoration-color:#B0B4BA}
+
+/* ---------- Links list ---------- */
+.linklist{list-style:none;margin:0;padding:0}
+.linklist li+li{border-top:1px solid var(--border)}
+.linklist a{display:flex;align-items:center;gap:10px;padding:12px 2px;min-height:48px;text-decoration:none;color:var(--text);font-size:14px}
+.linklist a:hover .lt{color:var(--red)}
+.linklist .lt{flex:1;min-width:0;font-weight:600}
+.linklist .lt small{display:block;font-weight:400;font-size:12px;color:var(--muted);word-break:break-all}
+.linklist svg{width:16px;height:16px;flex:none;color:var(--muted)}
+.src{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px}
+.src a{display:inline-flex;align-items:center;gap:4px;font-weight:600;min-height:32px}
+.src svg{width:13px;height:13px}
+
+/* ---------- Bottom nav ---------- */
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.97);
+  border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom)}
+.bottom-nav ul{list-style:none;margin:0 auto;padding:0 6px;max-width:430px;display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
+.bottom-nav a{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  color:var(--muted);text-decoration:none;font-size:11.5px;font-weight:600;border-radius:12px}
+.bottom-nav a svg{width:22px;height:22px}
+.bottom-nav a[aria-current="page"]{color:var(--red)}
+.bottom-nav a[aria-current="page"] .pill{background:var(--rose)}
+.bottom-nav .pill{display:flex;align-items:center;justify-content:center;width:52px;height:28px;border-radius:999px}
+.bottom-nav a:focus-visible{box-shadow:inset 0 0 0 2px var(--red)}
+
+@media (max-width:359px){
+  :root{--pad:16px}
+  h1{font-size:24px}
+  .segmented span{font-size:12px}
+  .bottom-nav a{font-size:10.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.overview-progress{display:flex;align-items:center;gap:12px;margin-top:16px}
+.overview-progress .bar{flex:1}
+.overview-progress span.count{font-size:13px;font-weight:600;white-space:nowrap}
+.steps{margin-top:12px}
+.step{padding:14px}
+.step .check{margin-top:2px}
+.step-main{flex:1;min-width:0}
+.step-toggle{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;width:100%;padding:0;border:0;background:none;
+  font:inherit;color:inherit;text-align:left;cursor:pointer;min-height:28px}
+.step-title{display:flex;flex-direction:column;min-width:0}
+.step-n{font-size:12px;font-weight:600;color:var(--muted)}
+.step-t{font-size:16px;font-weight:650;line-height:1.35}
+.chev{width:20px;height:20px;flex:none;color:var(--muted);transition:transform .2s;margin-top:8px}
+.step-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.step-chips{margin-top:8px}
+.step-desc{font-size:14px;margin-top:10px;color:#374151}
+.details-btn{margin-top:12px}
+.step.is-done .step-t{color:var(--done-text);text-decoration:line-through;text-decoration-color:#B0B4BA}
+.step.is-done .step-desc,.step.is-done .badge{opacity:.75}
+</style>
+</head>
+<body>
+<div class="app has-nav">
+
+<header class="topbar">
+  <a class="icon-btn" href="#" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <span class="spacer"></span>
+  <a class="icon-btn" href="#" aria-label="More options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg></a>
+</header>
+<main>
+  <p class="card-label" style="margin:0 0 4px">Roadmap</p>
+  <h1>Preparing for my first job</h1>
+  <p class="lede">A practical guide to organizing your documents and completing relevant pre-employment registrations.</p>
+
+  <div class="overview-progress">
+    <div class="bar" data-pbar role="progressbar" aria-label="Roadmap progress" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><span data-bar style="width:0%"></span></div>
+    <span class="count" data-count data-tpl="{n} of {t} steps done" aria-live="polite">0 of 6 steps done</span>
+  </div>
+
+  <a class="btn btn-secondary" href="14-checklist.html" style="margin-top:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg>Requirements checklist</a>
+
+  <div style="margin-top:16px"><aside class="notice notice-rose" aria-label="First-time jobseeker fee waiver">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>
+<div>
+<p><strong>You may qualify for a fee waiver.</strong> Under RA 11261, fees for certain government documents
+— including NBI clearance, barangay clearance and birth certificate — can be waived for first-time jobseekers.</p>
+<ul>
+<li>You must present a barangay certification that you are a first-time jobseeker.</li>
+<li>The benefit can be used only once.</li>
+<li>JobStart beneficiaries and those covered by similar exemptions don't qualify.</li>
+</ul>
+<p>SSS, PhilHealth and Pag-IBIG registrations are separate processes and are not specifically listed in the law. Confirm any costs directly with each agency.</p>
+<p><a href="https://legacy.senate.gov.ph/republic_acts/ra%2011261.pdf" target="_blank" rel="noopener noreferrer">Read RA 11261<span class="sr-only"> (opens in a new tab)</span></a></p>
+</div>
+</aside></div>
+
+  <section class="section" aria-labelledby="steps-h">
+    <h2 id="steps-h">Your steps</h2>
+    <p class="helper" style="margin-top:2px">Tap a step to see details. Check it off when you're done.</p>
+    <ol class="tasklist steps">
+      <li class="step task" id="step-1">
+  <input class="check" type="checkbox" id="chk-1" data-row="step-1" aria-label="Mark step 1 as done: Get barangay certification">
+  <div class="step-main">
+    <button class="step-toggle" type="button" aria-expanded="true" aria-controls="body-1">
+      <span class="step-title"><span class="step-n">Step 1</span><span class="step-t">Get barangay certification</span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="chips step-chips"><span class="badge badge-person"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 21V5l8-3 8 3v16"/><path d="M9 21v-4h6v4M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01"/></svg>In person</span></div>
+    <div class="step-body" id="body-1">
+      <p class="step-desc">Ask your barangay hall for a certification that you are a first-time jobseeker. It's your proof of eligibility for the RA 11261 fee waiver, so get it first.</p>
+      <p class="card-label" style="margin:12px 0 2px">Official sources</p>
+      <div class="src"><a href="https://legacy.senate.gov.ph/republic_acts/ra%2011261.pdf" target="_blank" rel="noopener noreferrer">Republic Act No. 11261<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+      <a class="btn btn-secondary btn-sm details-btn" href="#">View details<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</li><li class="step task" id="step-2">
+  <input class="check" type="checkbox" id="chk-2" data-row="step-2" aria-label="Mark step 2 as done: Get a PSA birth certificate">
+  <div class="step-main">
+    <button class="step-toggle" type="button" aria-expanded="false" aria-controls="body-2">
+      <span class="step-title"><span class="step-n">Step 2</span><span class="step-t">Get a PSA birth certificate</span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="chips step-chips"><span class="badge badge-online"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Online</span><span class="badge badge-person"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 21V5l8-3 8 3v16"/><path d="M9 21v-4h6v4M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01"/></svg>In person</span><span class="badge badge-waiver">Fee may be waived</span></div>
+    <div class="step-body" id="body-2" hidden>
+      <p class="step-desc">Request a copy of your birth certificate from the Philippine Statistics Authority, online for delivery or at a PSA outlet.</p>
+      <p class="card-label" style="margin:12px 0 2px">Official sources</p>
+      <div class="src"><a href="https://www.psaserbilis.com.ph/" target="_blank" rel="noopener noreferrer">PSA Serbilis (online request)<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a> <a href="https://psa.gov.ph/" target="_blank" rel="noopener noreferrer">Philippine Statistics Authority<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+      <a class="btn btn-secondary btn-sm details-btn" href="#">View details<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</li><li class="step task" id="step-3">
+  <input class="check" type="checkbox" id="chk-3" data-row="step-3" aria-label="Mark step 3 as done: Apply for NBI clearance">
+  <div class="step-main">
+    <button class="step-toggle" type="button" aria-expanded="false" aria-controls="body-3">
+      <span class="step-title"><span class="step-n">Step 3</span><span class="step-t">Apply for NBI clearance</span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="chips step-chips"><span class="badge badge-online"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Online</span><span class="badge badge-person"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 21V5l8-3 8 3v16"/><path d="M9 21v-4h6v4M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01"/></svg>In person</span><span class="badge badge-waiver">Fee may be waived</span></div>
+    <div class="step-body" id="body-3" hidden>
+      <p class="step-desc">Register and book an appointment online, then visit your chosen NBI clearance site for photo and biometrics.</p>
+      <p class="card-label" style="margin:12px 0 2px">Official sources</p>
+      <div class="src"><a href="https://clearance.nbi.gov.ph/" target="_blank" rel="noopener noreferrer">NBI Clearance online portal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a> <a href="https://firsttimejobseekers.nbi.gov.ph/" target="_blank" rel="noopener noreferrer">NBI first-time jobseeker service<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+      <a class="btn btn-secondary btn-sm details-btn" href="13-nbi-clearance-details.html">View details<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</li><li class="step task" id="step-4">
+  <input class="check" type="checkbox" id="chk-4" data-row="step-4" aria-label="Mark step 4 as done: Register with SSS">
+  <div class="step-main">
+    <button class="step-toggle" type="button" aria-expanded="false" aria-controls="body-4">
+      <span class="step-title"><span class="step-n">Step 4</span><span class="step-t">Register with SSS</span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="chips step-chips"><span class="badge badge-online"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Online</span></div>
+    <div class="step-body" id="body-4" hidden>
+      <p class="step-desc">Get your Social Security (SS) number and set up a My.SSS account so you can check your records later.</p>
+      <p class="card-label" style="margin:12px 0 2px">Official sources</p>
+      <div class="src"><a href="https://www.sss.gov.ph/" target="_blank" rel="noopener noreferrer">Social Security System<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a> <a href="https://member.sss.gov.ph/" target="_blank" rel="noopener noreferrer">My.SSS member portal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+      <a class="btn btn-secondary btn-sm details-btn" href="#">View details<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</li><li class="step task" id="step-5">
+  <input class="check" type="checkbox" id="chk-5" data-row="step-5" aria-label="Mark step 5 as done: Register with PhilHealth">
+  <div class="step-main">
+    <button class="step-toggle" type="button" aria-expanded="false" aria-controls="body-5">
+      <span class="step-title"><span class="step-n">Step 5</span><span class="step-t">Register with PhilHealth</span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="chips step-chips"><span class="badge badge-online"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Online</span><span class="badge badge-person"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 21V5l8-3 8 3v16"/><path d="M9 21v-4h6v4M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01"/></svg>In person</span></div>
+    <div class="step-body" id="body-5" hidden>
+      <p class="step-desc">Register as a member to get your PhilHealth Identification Number (PIN), which employers use for health insurance contributions.</p>
+      <p class="card-label" style="margin:12px 0 2px">Official sources</p>
+      <div class="src"><a href="https://www.philhealth.gov.ph/" target="_blank" rel="noopener noreferrer">PhilHealth<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+      <a class="btn btn-secondary btn-sm details-btn" href="#">View details<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</li><li class="step task" id="step-6">
+  <input class="check" type="checkbox" id="chk-6" data-row="step-6" aria-label="Mark step 6 as done: Register with Pag-IBIG Fund">
+  <div class="step-main">
+    <button class="step-toggle" type="button" aria-expanded="false" aria-controls="body-6">
+      <span class="step-title"><span class="step-n">Step 6</span><span class="step-t">Register with Pag-IBIG Fund</span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="chev"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="chips step-chips"><span class="badge badge-online"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Online</span></div>
+    <div class="step-body" id="body-6" hidden>
+      <p class="step-desc">Register to get your Pag-IBIG Membership ID (MID) number, which employers use for housing fund contributions.</p>
+      <p class="card-label" style="margin:12px 0 2px">Official sources</p>
+      <div class="src"><a href="https://www.pagibigfund.gov.ph/" target="_blank" rel="noopener noreferrer">Pag-IBIG Fund<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+      <a class="btn btn-secondary btn-sm details-btn" href="#">View details<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</li>
+    </ol>
+  </section>
+  <p class="helper" style="margin-top:16px">Prototype guidance only. Confirm current requirements on each agency's official website.</p>
+</main>
+
+</div>
+<nav class="bottom-nav" aria-label="Main">
+<ul><li><a href="#"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></span>Home</a></li><li><a href="#" aria-current="page"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span>My roadmaps</a></li><li><a href="#"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Explore</a></li><li><a href="#"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Profile</a></li></ul>
+</nav>
+<script>
+(function(){
+  function wire(root){
+    var boxes = root.querySelectorAll('input.check[data-row]');
+    var count = root.querySelector('[data-count]');
+    var bar = root.querySelector('[data-bar]');
+    var pbar = root.querySelector('[data-pbar]');
+    function update(){
+      var done = 0;
+      boxes.forEach(function(b){
+        var row = document.getElementById(b.getAttribute('data-row'));
+        if(row){ row.classList.toggle('is-done', b.checked); }
+        if(b.checked) done++;
+      });
+      if(count){ count.textContent = count.getAttribute('data-tpl').replace('{n}', done).replace('{t}', boxes.length); }
+      if(bar){ bar.style.width = (boxes.length ? done / boxes.length * 100 : 0) + '%'; }
+      if(pbar){ pbar.setAttribute('aria-valuenow', done); pbar.setAttribute('aria-valuetext', done + ' of ' + boxes.length); }
+    }
+    boxes.forEach(function(b){ b.addEventListener('change', update); });
+    update();
+  }
+  wire(document);
+})();
+
+document.querySelectorAll('.step-toggle').forEach(function(t){
+  t.addEventListener('click',function(){
+    var open=t.getAttribute('aria-expanded')==='true';
+    t.setAttribute('aria-expanded',String(!open));
+    document.getElementById(t.getAttribute('aria-controls')).hidden=open;
+  });
+});
+</script>
+</body>
+</html>
