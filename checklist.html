@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requirements checklist – Project AGILA</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#FAFAFA;color:#1F2937;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.4;-webkit-text-size-adjust:100%}
+a{color:#B91C1C}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #B91C1C;outline-offset:2px;border-radius:4px}
+.app{max-width:430px;margin:0 auto;min-height:100vh;padding-bottom:96px}
+.topbar{display:flex;align-items:center;gap:10px;padding:12px 20px;background:#fff;border-bottom:1px solid #E5E7EB}
+.back{width:32px;height:32px;border:0;background:transparent;font-size:22px;color:#1F2937;cursor:pointer;padding:0;flex:none}
+.wordmark{font-weight:800;letter-spacing:.12em;color:#B91C1C;font-size:16px}
+.crumb{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.08em;color:#6B2528;background:#FDE7E7;padding:4px 8px;border-radius:999px;white-space:nowrap}
+main{padding:20px}
+h1{font-size:26px;line-height:1.15;font-weight:700;margin:0 0 8px}
+.lead{font-size:13.5px;color:#6B7280;margin:0 0 16px}
+.notice{background:#FDE7E7;border:1px solid #E5E7EB;border-radius:12px;padding:12px;margin-bottom:14px}
+.notice h2{font-size:14px;margin:0 0 4px;color:#6B2528}
+.notice p{margin:0 0 6px;font-size:12.5px}
+.notice .caveat{font-size:12px;font-weight:600;color:#6B2528}
+.notice a{font-size:12px;font-weight:600}
+.progress{background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:12px;margin-bottom:14px}
+.count{font-size:14px;font-weight:600;margin:0 0 8px}
+.bar{height:6px;border-radius:999px;background:#E5E7EB;overflow:hidden}
+.fill{height:100%;width:0;background:#B91C1C;border-radius:999px;transition:width .2s}
+.help{font-size:12px;color:#6B7280;margin:8px 0 0}
+.help+.help{margin-top:4px}
+ul.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.card{display:flex;gap:12px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:13px}
+.card.done{background:#F3F4F6}
+.card input[type=checkbox]{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:#B91C1C;cursor:pointer}
+.body{min-width:0;flex:1}
+.title{display:block;font-size:15px;font-weight:600;cursor:pointer;margin:0 0 3px}
+.desc{font-size:13px;color:#1F2937;margin:0 0 8px}
+.card.done .title,.card.done .desc{color:#6B7280}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:#FDE7E7;color:#6B2528;font-size:10.5px;font-weight:700;letter-spacing:.04em}
+.links{display:flex;flex-direction:column;gap:4px;font-size:12px;margin-bottom:8px}
+.links a{overflow-wrap:anywhere}
+.step{border:0;background:transparent;padding:4px 0;font:inherit;font-size:12px;font-weight:600;color:#6B2528;text-decoration:underline;cursor:pointer}
+.disclaimer{font-size:12px;color:#6B7280;margin:14px 0 8px}
+footer p{font-size:11.5px;color:#6B7280;margin:0}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #E5E7EB}
+nav ul{list-style:none;margin:0 auto;padding:8px 0 calc(8px + env(safe-area-inset-bottom));display:flex;max-width:430px}
+nav li{flex:1}
+nav a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:#6B7280;font-size:11.5px;padding:2px 0}
+nav .ico{width:20px;height:20px;border:2px solid currentColor;border-radius:6px}
+nav a[aria-current=page]{color:#B91C1C;font-weight:700}
+nav a[aria-current=page] .ico{background:#B91C1C;border-color:#B91C1C}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <button class="back" type="button" aria-label="Go back">←</button>
+  <span class="wordmark">AGILA</span>
+  <span class="crumb">MY ROADMAP</span>
+</header>
+
+<main>
+  <h1>Requirements checklist</h1>
+  <p class="lead">Track the documents and registrations in your first-time-jobseeker roadmap. Confirm what applies to your situation with the relevant office.</p>
+
+  <section class="notice" aria-labelledby="notice-title">
+    <h2 id="notice-title">Check your first-time-jobseeker eligibility</h2>
+    <p>RA 11261 covers specified employment documents, including qualifying barangay clearances, NBI clearances, and birth certificates. A barangay certification confirming first-time-jobseeker status is required. Waivers are subject to eligibility and legal conditions.</p>
+    <p class="caveat">Do not assume SSS, PhilHealth, Pag-IBIG, delivery, or service charges are automatically waived.</p>
+    <a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" target="_blank" rel="noopener noreferrer">Read RA 11261</a>
+  </section>
+
+  <section class="progress" aria-label="Checklist progress">
+    <p class="count" id="count" aria-live="polite">0 of 6 items checked</p>
+    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" aria-label="Items checked" id="bar"><div class="fill" id="fill"></div></div>
+    <p class="help">Check an item when you have completed or confirmed it.</p>
+    <p class="help">Checked items reflect your own progress, not official confirmation of compliance.</p>
+  </section>
+
+  <ul class="list">
+    <li class="card">
+      <input type="checkbox" id="c1">
+      <div class="body">
+        <label class="title" for="c1">Barangay certification</label>
+        <p class="desc">Obtain certification confirming your first-time-jobseeker status.</p>
+        <div class="pills"><span class="pill">IN PERSON</span></div>
+        <div class="links"><a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" target="_blank" rel="noopener noreferrer">RA 11261, Section 5</a></div>
+        <button class="step" type="button">View roadmap step</button>
+      </div>
+    </li>
+    <li class="card">
+      <input type="checkbox" id="c2">
+      <div class="body">
+        <label class="title" for="c2">PSA birth certificate</label>
+        <p class="desc">Request an official copy if needed for your employment documents.</p>
+        <div class="pills"><span class="pill">ONLINE / IN PERSON</span></div>
+        <div class="links"><a href="https://psa.gov.ph/birth-certificate" target="_blank" rel="noopener noreferrer">PSA Birth Certificate Instructions</a></div>
+        <button class="step" type="button">View roadmap step</button>
+      </div>
+    </li>
+    <li class="card">
+      <input type="checkbox" id="c3">
+      <div class="body">
+        <label class="title" for="c3">NBI clearance</label>
+        <p class="desc">Complete the official online application and attend the selected branch appointment.</p>
+        <div class="pills"><span class="pill">ONLINE</span><span class="pill">IN PERSON</span></div>
+        <div class="links">
+          <a href="https://nbi.gov.ph/how-to-apply-nbi-clearance/" target="_blank" rel="noopener noreferrer">NBI Application Instructions</a>
+          <a href="https://clearance.nbi.gov.ph" target="_blank" rel="noopener noreferrer">NBI Clearance Portal</a>
+        </div>
+        <button class="step" type="button">View roadmap step</button>
+      </div>
+    </li>
+    <li class="card">
+      <input type="checkbox" id="c4">
+      <div class="body">
+        <label class="title" for="c4">SSS registration</label>
+        <p class="desc">Check whether you already have an SS number; register if applicable.</p>
+        <div class="pills"><span class="pill">ONLINE</span></div>
+        <div class="links"><a href="https://www.sss.gov.ph/become-an-sss-member" target="_blank" rel="noopener noreferrer">SSS Membership Instructions</a></div>
+        <button class="step" type="button">View roadmap step</button>
+      </div>
+    </li>
+    <li class="card">
+      <input type="checkbox" id="c5">
+      <div class="body">
+        <label class="title" for="c5">PhilHealth registration</label>
+        <p class="desc">Check your membership status and follow the appropriate registration instructions.</p>
+        <div class="pills"><span class="pill">OFFICIAL ONLINE SERVICES</span></div>
+        <div class="links"><a href="https://www.philhealth.gov.ph/services/" target="_blank" rel="noopener noreferrer">PhilHealth Online Services</a></div>
+        <button class="step" type="button">View roadmap step</button>
+      </div>
+    </li>
+    <li class="card">
+      <input type="checkbox" id="c6">
+      <div class="body">
+        <label class="title" for="c6">Pag-IBIG Fund registration</label>
+        <p class="desc">Check your membership status and follow the applicable registration process.</p>
+        <div class="pills"><span class="pill">ONLINE REGISTRATION</span></div>
+        <div class="links"><a href="https://www.pagibigfund.gov.ph/" target="_blank" rel="noopener noreferrer">Pag-IBIG Fund Official Website</a></div>
+        <button class="step" type="button">View roadmap step</button>
+      </div>
+    </li>
+  </ul>
+
+  <p class="disclaimer">Checked items reflect your own progress, not official confirmation of compliance.</p>
+  <footer><p>Information shown is for prototyping purposes only. Confirm current requirements through the linked official sources.</p></footer>
+</main>
+
+<nav aria-label="Primary">
+  <ul>
+    <li><a href="#"><span class="ico" aria-hidden="true"></span>Home</a></li>
+    <li><a href="#" aria-current="page"><span class="ico" aria-hidden="true"></span>My roadmaps</a></li>
+    <li><a href="#"><span class="ico" aria-hidden="true"></span>Explore</a></li>
+    <li><a href="#"><span class="ico" aria-hidden="true"></span>Profile</a></li>
+  </ul>
+</nav>
+</div>
+
+<script>
+(function () {
+  var boxes = document.querySelectorAll('.card input[type=checkbox]');
+  var count = document.getElementById('count');
+  var fill = document.getElementById('fill');
+  var bar = document.getElementById('bar');
+  function update() {
+    var n = 0;
+    boxes.forEach(function (b) {
+      var card = b.closest('.card');
+      if (b.checked) { n++; card.classList.add('done'); }
+      else { card.classList.remove('done'); }
+    });
+    count.textContent = n + ' of 6 items checked';
+    fill.style.width = (n / 6 * 100) + '%';
+    bar.setAttribute('aria-valuenow', n);
+  }
+  boxes.forEach(function (b) {
+    b.checked = false;
+    b.addEventListener('change', update);
+  });
+  update();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGILA | Digital Confidence</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #FAFAFA;
+      --card: #FFFFFF;
+      --primary: #B91C1C;
+      --burgundy: #6B2528;
+      --pale-rose: #FDE7E7;
+      --text: #1F2937;
+      --secondary: #6B7280;
+      --border: #E5E7EB;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      min-height: 100%;
+      background: var(--background);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 20px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      margin: 0;
+      color: var(--burgundy);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      line-height: 24px;
+    }
+
+    .progress {
+      margin-top: 30px;
+    }
+
+    .progress-label {
+      margin: 0 0 12px;
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 9px;
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .progress-title {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .progress-count {
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .progress-track {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .progress-segment {
+      height: 4px;
+      border-radius: 10px;
+      background: var(--border);
+    }
+
+    .progress-segment.active {
+      background: var(--primary);
+    }
+
+    .intro {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 750;
+      line-height: 1.22;
+      letter-spacing: -0.65px;
+    }
+
+    .helper {
+      margin: 9px 0 0;
+      color: var(--secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      min-width: 0;
+    }
+
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 58px;
+      padding: 10px 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 120ms ease, border-color 120ms ease;
+    }
+
+    .option:has(input:checked) {
+      background: var(--pale-rose);
+      border: 2px solid var(--primary);
+      padding: 9px 11px;
+    }
+
+    .option:has(input:checked)::after {
+      content: "Selected";
+      position: absolute;
+      right: 12px;
+      bottom: 7px;
+      color: var(--burgundy);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15px;
+    }
+
+    .radio {
+      appearance: none;
+      -webkit-appearance: none;
+      flex: 0 0 19px;
+      width: 19px;
+      height: 19px;
+      margin: 0;
+      border: 1.5px solid #9CA3AF;
+      border-radius: 50%;
+      background: #FFFFFF;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .radio:checked {
+      border: 2px solid var(--primary);
+    }
+
+    .radio:checked::after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .radio:focus-visible,
+    .option:focus-within {
+      outline: 3px solid #7F1D1D;
+      outline-offset: 3px;
+    }
+
+    .option-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      padding-bottom: 1px;
+    }
+
+    .option-title {
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 18px;
+    }
+
+    .option-description {
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+
+    .option:has(input:checked) .option-content {
+      padding-bottom: 11px;
+    }
+
+    .option:has(input:checked) .option-title {
+      color: var(--burgundy);
+    }
+
+    .option:has(input:checked) .option-description {
+      color: #4B3031;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    .primary-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 0 20px;
+      border: 2px solid var(--primary);
+      border-radius: 999px;
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .primary-button:focus-visible,
+    .skip-button:focus-visible {
+      outline: 3px solid var(--burgundy);
+      outline-offset: 4px;
+    }
+
+    .primary-button:active {
+      background: var(--burgundy);
+      border-color: var(--burgundy);
+    }
+
+    .skip-button {
+      align-self: center;
+      min-height: 24px;
+      padding: 2px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--burgundy);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .skip-button:hover {
+      text-decoration-color: currentColor;
+    }
+
+    @media (min-height: 780px) {
+      .page {
+        padding-top: 28px;
+        padding-bottom: 24px;
+      }
+
+      .progress {
+        margin-top: 32px;
+      }
+
+      .intro {
+        margin-top: 32px;
+        margin-bottom: 22px;
+      }
+
+      .option {
+        min-height: 60px;
+      }
+
+      .actions {
+        padding-top: 26px;
+      }
+    }
+
+    @media (max-height: 779px) {
+      .page {
+        padding-top: 18px;
+        padding-bottom: 16px;
+      }
+
+      .progress {
+        margin-top: 20px;
+      }
+
+      .intro {
+        margin-top: 22px;
+        margin-bottom: 15px;
+      }
+
+      .option {
+        min-height: 54px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .option:has(input:checked) {
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+
+      .actions {
+        padding-top: 16px;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .page {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .option {
+        gap: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      .option:has(input:checked) {
+        padding-right: 9px;
+        padding-left: 9px;
+      }
+
+      .option:has(input:checked)::after {
+        right: 9px;
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="brand" aria-label="AGILA">AGILA</p>
+
+      <section class="progress" aria-label="Onboarding progress">
+        <p class="progress-label">Personalize your experience</p>
+
+        <div class="progress-meta">
+          <span class="progress-title">Digital confidence</span>
+          <span class="progress-count">Step 4 of 5</span>
+        </div>
+
+        <div
+          class="progress-track"
+          role="img"
+          aria-label="4 of 5 steps completed"
+        >
+          <span class="progress-segment active"></span>
+          <span class="progress-segment active"></span>
+          <span class="progress-segment active"></span>
+          <span class="progress-segment active"></span>
+          <span class="progress-segment"></span>
+        </div>
+      </section>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">How comfortable are you online?</h1>
+      <p class="helper">
+        This helps us choose how much detail to include in instructions.
+      </p>
+    </section>
+
+    <form id="confidence-form">
+      <fieldset class="options" aria-labelledby="page-title">
+        <legend style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+          Select your comfort level with online processes. This is optional.
+        </legend>
+
+        <label class="option">
+          <input
+            class="radio"
+            type="radio"
+            name="confidence"
+            value="not-comfortable"
+          >
+          <span class="option-content">
+            <span class="option-title">Not comfortable</span>
+            <span class="option-description">I prefer clear, step-by-step instructions.</span>
+          </span>
+        </label>
+
+        <label class="option">
+          <input
+            class="radio"
+            type="radio"
+            name="confidence"
+            value="a-little-comfortable"
+          >
+          <span class="option-content">
+            <span class="option-title">A little comfortable</span>
+            <span class="option-description">I can manage simple online tasks.</span>
+          </span>
+        </label>
+
+        <label class="option">
+          <input
+            class="radio"
+            type="radio"
+            name="confidence"
+            value="moderately-comfortable"
+          >
+          <span class="option-content">
+            <span class="option-title">Moderately comfortable</span>
+            <span class="option-description">I can follow most online processes.</span>
+          </span>
+        </label>
+
+        <label class="option">
+          <input
+            class="radio"
+            type="radio"
+            name="confidence"
+            value="very-comfortable"
+          >
+          <span class="option-content">
+            <span class="option-title">Very comfortable</span>
+            <span class="option-description">I’m comfortable navigating online services.</span>
+          </span>
+        </label>
+
+        <label class="option">
+          <input
+            class="radio"
+            type="radio"
+            name="confidence"
+            value="prefer-not-to-say"
+          >
+          <span class="option-content">
+            <span class="option-title">Prefer not to say</span>
+          </span>
+        </label>
+      </fieldset>
+
+      <div class="actions">
+        <button class="primary-button" type="button">
+          Continue
+        </button>
+
+        <button class="skip-button" type="button">
+          Skip for now
+        </button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

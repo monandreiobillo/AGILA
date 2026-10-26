@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGILA | Employment Status</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #FAFAFA;
+      --surface: #FFFFFF;
+      --primary: #B91C1C;
+      --burgundy: #6B2528;
+      --pale-rose: #FDE7E7;
+      --text: #1F2937;
+      --secondary: #6B7280;
+      --border: #E5E7EB;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      min-height: 100%;
+      background: var(--background);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: var(--background);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: 24px 20px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      color: var(--burgundy);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      line-height: 24px;
+    }
+
+    .progress-section {
+      margin-top: 27px;
+    }
+
+    .progress-label {
+      margin: 0 0 10px;
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+    }
+
+    .progress-track {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .progress-segment {
+      height: 4px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .heading-section {
+      margin-top: 27px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--text);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.6px;
+    }
+
+    .helper {
+      margin: 8px 0 0;
+      color: var(--secondary);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-top: 21px;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 120ms ease, background-color 120ms ease;
+    }
+
+    .option:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--pale-rose);
+    }
+
+    .option:focus-within {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .radio {
+      appearance: none;
+      -webkit-appearance: none;
+      flex: 0 0 18px;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      border: 1.5px solid #9CA3AF;
+      border-radius: 50%;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .radio:checked {
+      border: 5px solid var(--primary);
+    }
+
+    .radio:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .option-text {
+      color: var(--text);
+      font-size: 14.5px;
+      font-weight: 500;
+      line-height: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    .actions {
+      margin-top: auto;
+      padding-top: 22px;
+    }
+
+    .primary-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #FFFFFF;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 650;
+      line-height: 22px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .primary-button:focus-visible,
+    .skip-button:focus-visible {
+      outline: 2px solid var(--burgundy);
+      outline-offset: 4px;
+    }
+
+    .primary-button:hover {
+      background: #991B1B;
+    }
+
+    .skip-button {
+      display: block;
+      margin: 14px auto 0;
+      padding: 5px 12px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--secondary);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .skip-button:hover {
+      color: var(--burgundy);
+    }
+
+    @media (max-width: 350px) {
+      .screen {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .progress-section {
+        margin-top: 23px;
+      }
+
+      .heading-section {
+        margin-top: 23px;
+      }
+
+      form {
+        margin-top: 17px;
+      }
+
+      .option {
+        padding: 11px;
+      }
+
+      .actions {
+        padding-top: 18px;
+      }
+    }
+
+    @media (max-height: 760px) {
+      .screen {
+        padding-top: 18px;
+        padding-bottom: 14px;
+      }
+
+      .progress-section {
+        margin-top: 18px;
+      }
+
+      .heading-section {
+        margin-top: 20px;
+      }
+
+      form {
+        margin-top: 15px;
+      }
+
+      .options {
+        gap: 7px;
+      }
+
+      .option {
+        min-height: 46px;
+        padding: 10px 12px;
+      }
+
+      .actions {
+        padding-top: 15px;
+      }
+
+      .skip-button {
+        margin-top: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <header>
+      <div class="brand" aria-label="AGILA">AGILA</div>
+
+      <section class="progress-section" aria-label="Onboarding progress">
+        <p class="progress-label">Personalize your experience</p>
+        <div class="progress-track" role="progressbar"
+             aria-label="Onboarding progress"
+             aria-valuemin="1"
+             aria-valuemax="5"
+             aria-valuenow="5">
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+        </div>
+      </section>
+    </header>
+
+    <section class="heading-section">
+      <h1>Which best describes you?</h1>
+      <p class="helper">
+        Choose the option closest to your current situation.
+      </p>
+    </section>
+
+    <form action="#" method="get">
+      <fieldset aria-label="Employment status">
+        <div class="options">
+          <label class="option">
+            <input class="radio" type="radio" name="employment" value="first-job-seeker">
+            <span class="option-text">Looking for my first job</span>
+          </label>
+
+          <label class="option">
+            <input class="radio" type="radio" name="employment" value="recently-hired">
+            <span class="option-text">Recently hired for my first job</span>
+          </label>
+
+          <label class="option">
+            <input class="radio" type="radio" name="employment" value="employed">
+            <span class="option-text">Already employed</span>
+          </label>
+
+          <label class="option">
+            <input class="radio" type="radio" name="employment" value="self-employed">
+            <span class="option-text">Self-employed or freelancer</span>
+          </label>
+
+          <label class="option">
+            <input class="radio" type="radio" name="employment" value="unemployed">
+            <span class="option-text">Currently unemployed</span>
+          </label>
+
+          <label class="option">
+            <input class="radio" type="radio" name="employment" value="other">
+            <span class="option-text">Other / Prefer not to say</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button class="primary-button" type="submit">
+          Finish setup
+        </button>
+
+        <button class="skip-button" type="button">
+          Skip for now
+        </button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

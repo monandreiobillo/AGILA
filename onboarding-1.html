@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FAFAFA">
+  <title>Project AGILA | Age Group</title>
+  <style>
+    :root {
+      --background: #FAFAFA;
+      --primary: #B91C1C;
+      --burgundy: #6B2528;
+      --pale-rose: #FDE7E7;
+      --text: #1F2937;
+      --secondary: #6B7280;
+      --border: #E5E7EB;
+      --surface: #FFFFFF;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      min-height: 100%;
+      background: var(--background);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: var(--background);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: 26px 20px 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      flex-shrink: 0;
+      margin-bottom: 27px;
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--burgundy);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .brand-mark {
+      width: 23px;
+      height: 23px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--primary);
+      border-radius: 7px 7px 7px 2px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .progress {
+      margin-bottom: 23px;
+    }
+
+    .progress-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 11px;
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .step-count {
+      flex-shrink: 0;
+      color: var(--burgundy);
+      font-weight: 600;
+    }
+
+    .progress-track {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .progress-segment {
+      height: 4px;
+      border-radius: 99px;
+      background: var(--border);
+    }
+
+    .progress-segment.active {
+      background: var(--primary);
+    }
+
+    .intro {
+      margin-bottom: 19px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--text);
+      font-size: 26px;
+      font-weight: 750;
+      line-height: 1.2;
+      letter-spacing: -0.65px;
+    }
+
+    .helper {
+      margin: 8px 0 0;
+      max-width: 340px;
+      color: var(--secondary);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      min-width: 0;
+    }
+
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 10px 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 120ms ease, background-color 120ms ease;
+    }
+
+    .option input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: 0;
+      opacity: 0;
+    }
+
+    .radio {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      border: 1.5px solid #D1D5DB;
+      border-radius: 50%;
+      background: var(--surface);
+    }
+
+    .radio::after {
+      width: 9px;
+      height: 9px;
+      content: "";
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .option-label {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .option:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--pale-rose);
+    }
+
+    .option input:checked + .radio {
+      border-color: var(--primary);
+    }
+
+    .option input:checked + .radio::after {
+      background: var(--primary);
+    }
+
+    .option:focus-within {
+      outline: 3px solid rgba(185, 28, 28, 0.2);
+      outline-offset: 3px;
+    }
+
+    .option:hover {
+      border-color: #D5A2A2;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    .continue-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: 0.05px;
+      cursor: pointer;
+    }
+
+    .continue-button:focus-visible,
+    .skip-button:focus-visible {
+      outline: 3px solid rgba(185, 28, 28, 0.35);
+      outline-offset: 4px;
+    }
+
+    .skip-button {
+      align-self: center;
+      padding: 4px 12px;
+      border: none;
+      background: transparent;
+      color: var(--secondary);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    @media (min-height: 845px) {
+      .screen {
+        padding-top: 30px;
+        padding-bottom: 28px;
+      }
+
+      .brand {
+        margin-bottom: 32px;
+      }
+
+      .progress {
+        margin-bottom: 27px;
+      }
+
+      .intro {
+        margin-bottom: 21px;
+      }
+
+      .options {
+        gap: 10px;
+      }
+
+      .option {
+        min-height: 50px;
+      }
+    }
+
+    @media (max-height: 760px) {
+      .screen {
+        padding-top: 18px;
+        padding-bottom: 16px;
+      }
+
+      .brand {
+        margin-bottom: 17px;
+      }
+
+      .progress {
+        margin-bottom: 16px;
+      }
+
+      .intro {
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .options {
+        gap: 6px;
+      }
+
+      .option {
+        min-height: 43px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .actions {
+        padding-top: 14px;
+        gap: 8px;
+      }
+
+      .continue-button {
+        min-height: 48px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .screen {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .brand {
+        margin-bottom: 22px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .option {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      .radio {
+        margin-right: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <header class="brand">
+      <div class="wordmark" aria-label="AGILA">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>AGILA</span>
+      </div>
+    </header>
+
+    <section class="progress" aria-label="Onboarding progress">
+      <div class="progress-label">
+        <span>Personalize your experience</span>
+        <span class="step-count">Step 1 of 5</span>
+      </div>
+
+      <div class="progress-track" role="img" aria-label="Step 1 of 5 completed">
+        <span class="progress-segment active"></span>
+        <span class="progress-segment"></span>
+        <span class="progress-segment"></span>
+        <span class="progress-segment"></span>
+        <span class="progress-segment"></span>
+      </div>
+    </section>
+
+    <section class="intro">
+      <h1 id="age-heading">Which age group are you in?</h1>
+      <p class="helper" id="age-helper">
+        This helps us tailor guidance where age may matter.
+      </p>
+    </section>
+
+    <fieldset class="options" aria-labelledby="age-heading" aria-describedby="age-helper">
+      <legend style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+        Select your age group
+      </legend>
+
+      <label class="option">
+        <input type="radio" name="age-group" value="under-18">
+        <span class="radio" aria-hidden="true"></span>
+        <span class="option-label">Under 18</span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age-group" value="18-24">
+        <span class="radio" aria-hidden="true"></span>
+        <span class="option-label">18–24</span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age-group" value="25-34">
+        <span class="radio" aria-hidden="true"></span>
+        <span class="option-label">25–34</span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age-group" value="35-44">
+        <span class="radio" aria-hidden="true"></span>
+        <span class="option-label">35–44</span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age-group" value="45-59">
+        <span class="radio" aria-hidden="true"></span>
+        <span class="option-label">45–59</span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age-group" value="60-and-above">
+        <span class="radio" aria-hidden="true"></span>
+        <span class="option-label">60 and above</span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="age-group" value="prefer-not-to-say">
+        <span class="radio" aria-hidden="true"></span>
+        <span class="option-label">Prefer not to say</span>
+      </label>
+    </fieldset>
+
+    <footer class="actions">
+      <button class="continue-button" type="button">Continue</button>
+      <button class="skip-button" type="button">Skip for now</button>
+    </footer>
+  </main>
+</body>
+</html>

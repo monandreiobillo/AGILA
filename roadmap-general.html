@@ -1,0 +1,1189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FAFAFA">
+  <meta name="description" content="Project AGILA's first-time jobseeker roadmap overview and official government service references.">
+  <title>First-Time Jobseeker Roadmap | AGILA</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #FAFAFA;
+      --surface: #FFFFFF;
+      --red: #B91C1C;
+      --burgundy: #6B2528;
+      --rose: #FDE7E7;
+      --text: #1F2937;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+      --completed-bg: #F3F4F6;
+      --completed-text: #6B7280;
+      --radius: 15px;
+      --page-padding: 20px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      scroll-behavior: smooth;
+      scroll-padding-top: 68px;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--background);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    a {
+      color: var(--red);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+
+    a:hover {
+      color: var(--burgundy);
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #B91C1C;
+      outline-offset: 3px;
+    }
+
+    .app-header {
+      height: 54px;
+      padding: 0 var(--page-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-icon {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text);
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-size: 17px;
+      font-weight: 850;
+      letter-spacing: 1.6px;
+      color: var(--burgundy);
+    }
+
+    .brand-mark {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px 8px 8px 3px;
+      background: var(--red);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 23px var(--page-padding) 34px;
+    }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.18;
+      font-weight: 800;
+      letter-spacing: -0.75px;
+    }
+
+    .intro {
+      margin: 9px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+
+    .checklist-button {
+      width: 100%;
+      min-height: 50px;
+      margin: 18px 0 6px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      border-radius: 999px;
+      background: var(--red);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 750;
+      text-align: center;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .checklist-button:hover {
+      color: #FFFFFF;
+      background: var(--burgundy);
+    }
+
+    .checklist-button:active {
+      transform: scale(0.99);
+    }
+
+    .checklist-icon {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+    }
+
+    .checklist-caption {
+      margin: 0 0 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .benefit-card {
+      margin: 0 0 22px;
+      padding: 13px 13px 12px;
+      border: 1px solid #F2CACA;
+      border-radius: 13px;
+      background: var(--rose);
+      color: var(--burgundy);
+    }
+
+    .benefit-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 7px;
+    }
+
+    .info-icon {
+      width: 23px;
+      height: 23px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #DCA8A8;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .benefit-heading h2 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.35;
+    }
+
+    .benefit-card p {
+      margin: 0 0 8px;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .benefit-card .caveat {
+      color: #63363A;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .benefit-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .benefit-source a {
+      color: var(--burgundy);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 5px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+
+    .section-count {
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .helper-text {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+
+    .step-card.completed {
+      background: var(--completed-bg);
+      border-color: #E5E7EB;
+    }
+
+    .step-top {
+      display: grid;
+      grid-template-columns: 25px minmax(0, 1fr);
+      gap: 10px;
+      padding: 13px 12px 10px;
+      align-items: start;
+    }
+
+    .step-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      margin: 1px 0 0;
+      flex-shrink: 0;
+      display: grid;
+      place-content: center;
+      border: 1.7px solid #9CA3AF;
+      border-radius: 6px;
+      background: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .step-checkbox::before {
+      content: "";
+      width: 10px;
+      height: 6px;
+      border: solid #FFFFFF;
+      border-width: 0 0 2px 2px;
+      transform: rotate(-45deg) scale(0);
+      transform-origin: center;
+    }
+
+    .step-checkbox:checked {
+      border-color: var(--red);
+      background: var(--red);
+    }
+
+    .step-checkbox:checked::before {
+      transform: rotate(-45deg) scale(1);
+    }
+
+    .step-content {
+      min-width: 0;
+    }
+
+    .step-title {
+      margin: 0 0 4px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+      transition: color 150ms ease;
+    }
+
+    .step-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      transition: color 150ms ease;
+    }
+
+    .mode-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 9px;
+    }
+
+    .mode-pill {
+      min-height: 23px;
+      max-width: 100%;
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border: 1px solid #F3D4D4;
+      border-radius: 999px;
+      background: #FFF7F7;
+      color: var(--burgundy);
+      font-size: 9px;
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: 0.25px;
+      overflow-wrap: anywhere;
+    }
+
+    .step-card.completed .step-title,
+    .step-card.completed .step-description {
+      color: var(--completed-text);
+    }
+
+    .step-card.completed .mode-pill {
+      background: #E9EAED;
+      border-color: #DCDDDF;
+      color: #5B6069;
+    }
+
+    .step-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 0 12px;
+      padding: 0 0 11px;
+    }
+
+    .step-toggle {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 0;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 650;
+      text-align: left;
+    }
+
+    .chevron {
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      border-right: 1.7px solid currentColor;
+      border-bottom: 1.7px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform 150ms ease;
+      margin-top: -4px;
+    }
+
+    .step-toggle[aria-expanded="true"] .chevron {
+      transform: rotate(225deg);
+      margin-top: 4px;
+    }
+
+    .detail-button {
+      min-height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 7px 11px;
+      flex-shrink: 0;
+      border: 1px solid #E9BEBE;
+      border-radius: 999px;
+      background: #FFFFFF;
+      color: var(--red);
+      text-decoration: none;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 750;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .detail-button:hover {
+      background: #FFF4F4;
+      color: var(--burgundy);
+    }
+
+    .step-card.completed .detail-button {
+      background: #FFFFFF;
+      color: var(--burgundy);
+    }
+
+    .step-details {
+      padding: 0 12px 13px;
+      margin: 0 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .step-details[hidden] {
+      display: none;
+    }
+
+    .details-label {
+      margin: 12px 0 7px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .instruction-list {
+      margin: 0;
+      padding-left: 17px;
+      color: #4B5563;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .instruction-list li {
+      padding-left: 2px;
+      margin: 0 0 5px;
+    }
+
+    .source-box {
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #FAFAFA;
+    }
+
+    .source-label {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .source-link {
+      display: inline-block;
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 750;
+    }
+
+    .online-link {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .inline-note {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .branch-label {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 9px;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      background: #FFFFFF;
+      color: #4B5563;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .source-disclaimer {
+      margin: 17px 0 0;
+      padding: 12px 2px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .bottom-nav {
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding: 7px 6px max(8px, env(safe-area-inset-bottom));
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-item {
+      min-width: 0;
+      min-height: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 4px 2px;
+      border-radius: 10px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 550;
+      text-align: center;
+    }
+
+    .nav-icon {
+      width: 21px;
+      height: 21px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .nav-item.selected {
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .nav-item.selected .nav-icon {
+      background: #FDE7E7;
+      border-radius: 7px;
+    }
+
+    .nav-item:focus-visible {
+      outline-offset: -1px;
+    }
+
+    @media (min-width: 500px) {
+      .page {
+        padding-top: 30px;
+      }
+
+      .benefit-card {
+        padding: 15px;
+      }
+
+      .step-top {
+        padding: 14px;
+      }
+
+      .step-controls {
+        margin: 0 14px;
+      }
+
+      .step-details {
+        margin: 0 14px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      :root {
+        --page-padding: 14px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .step-top {
+        grid-template-columns: 24px minmax(0, 1fr);
+        gap: 8px;
+        padding: 12px 10px 9px;
+      }
+
+      .step-controls {
+        margin: 0 10px;
+      }
+
+      .step-details {
+        margin: 0 10px;
+        padding-right: 3px;
+        padding-left: 3px;
+      }
+
+      .detail-button {
+        padding-right: 9px;
+        padding-left: 9px;
+      }
+
+      .nav-item {
+        font-size: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <button class="header-icon" type="button" aria-label="Back" onclick="history.back()">&#8592;</button>
+
+    <a class="wordmark" href="#main" aria-label="AGILA home">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <span>AGILA</span>
+    </a>
+
+    <button class="header-icon" type="button" aria-label="More options" title="More options">&#8942;</button>
+  </header>
+
+  <main class="page" id="main">
+    <section aria-labelledby="page-title">
+      <p class="eyebrow">YOUR ROADMAP</p>
+      <h1 id="page-title">Preparing for my first job</h1>
+      <p class="intro">
+        A practical guide to organizing your documents and completing relevant
+        pre-employment registrations.
+      </p>
+      <p class="status-line">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>6 steps</span>
+      </p>
+    </section>
+
+    <a class="checklist-button" href="#requirements-checklist" id="checklist-button">
+      <svg class="checklist-icon" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+           stroke-linejoin="round" aria-hidden="true">
+        <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+        <path d="m7 9 1.5 1.5L11 8"></path>
+        <path d="M13 9h4"></path>
+        <path d="m7 15 1.5 1.5L11 14"></path>
+        <path d="M13 15h4"></path>
+      </svg>
+      <span>View requirements checklist</span>
+      <span aria-hidden="true">&#8594;</span>
+    </a>
+    <p class="checklist-caption">
+      Review the documents and registrations in this roadmap.
+    </p>
+
+    <aside class="benefit-card" aria-labelledby="benefit-title">
+      <div class="benefit-heading">
+        <span class="info-icon" aria-hidden="true">i</span>
+        <h2 id="benefit-title">First-time jobseeker benefit</h2>
+      </div>
+      <p>
+        Under Republic Act No. 11261, eligible first-time jobseekers may receive
+        fee waivers for specified employment documents, including qualifying
+        barangay clearances, NBI clearances, and birth certificates. A barangay
+        certification confirming first-time-jobseeker status is required.
+      </p>
+      <p class="caveat">
+        Eligibility, conditions, and any service or delivery charges must be
+        confirmed with the issuing office or official channel. This does not
+        make every registration or service automatically free.
+      </p>
+      <div class="benefit-source">
+        <span aria-hidden="true">&#8599;</span>
+        <a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html"
+           target="_blank" rel="noopener noreferrer">Read RA 11261</a>
+      </div>
+    </aside>
+
+    <section aria-labelledby="steps-heading">
+      <div class="section-heading">
+        <h2 id="steps-heading">Your steps</h2>
+        <span class="section-count">6 steps total</span>
+      </div>
+      <p class="helper-text">Check a step when you’ve completed it.</p>
+
+      <div class="step-list" id="roadmap-steps">
+
+        <!-- Step 1 -->
+        <article class="step-card" id="step-1">
+          <div class="step-top">
+            <input class="step-checkbox" type="checkbox" id="complete-1"
+                   aria-label="Mark Get barangay certification as completed">
+            <div class="step-content">
+              <h3 class="step-title">Get barangay certification</h3>
+              <p class="step-description">
+                Request certification confirming your first-time-jobseeker status.
+              </p>
+              <div class="mode-pills">
+                <span class="mode-pill">IN PERSON</span>
+              </div>
+            </div>
+          </div>
+          <div class="step-controls">
+            <button class="step-toggle" type="button" aria-expanded="false"
+                    aria-controls="details-1">
+              <span class="chevron" aria-hidden="true"></span>
+              <span>Quick preview</span>
+            </button>
+            <a class="detail-button" href="#details-1"
+               data-detail-link="details-1">View details <span aria-hidden="true">&#8594;</span></a>
+          </div>
+          <div class="step-details" id="details-1" hidden>
+            <p class="details-label">What to do</p>
+            <ul class="instruction-list">
+              <li>Ask your barangay office for its first-time-jobseeker certification procedure.</li>
+              <li>Confirm its local requirements and any form or oath of undertaking it requires.</li>
+              <li>Keep the issued certification for eligible applications.</li>
+            </ul>
+            <div class="source-box">
+              <p class="source-label">Source reference</p>
+              <a class="source-link"
+                 href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html"
+                 target="_blank" rel="noopener noreferrer">
+                Legal basis: RA 11261, Section 5
+              </a>
+            </div>
+            <p class="inline-note">
+              The exact local procedure must be confirmed with your relevant barangay.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 2 -->
+        <article class="step-card" id="step-2">
+          <div class="step-top">
+            <input class="step-checkbox" type="checkbox" id="complete-2"
+                   aria-label="Mark Get a PSA birth certificate as completed">
+            <div class="step-content">
+              <h3 class="step-title">Get a PSA birth certificate</h3>
+              <p class="step-description">
+                Request an official copy of your birth certificate if needed.
+              </p>
+              <div class="mode-pills">
+                <span class="mode-pill">ONLINE REQUEST</span>
+                <span class="mode-pill">IN PERSON OPTION</span>
+              </div>
+            </div>
+          </div>
+          <div class="step-controls">
+            <button class="step-toggle" type="button" aria-expanded="false"
+                    aria-controls="details-2">
+              <span class="chevron" aria-hidden="true"></span>
+              <span>Quick preview</span>
+            </button>
+            <a class="detail-button" href="#details-2"
+               data-detail-link="details-2">View details <span aria-hidden="true">&#8594;</span></a>
+          </div>
+          <div class="step-details" id="details-2" hidden>
+            <p class="details-label">What to do</p>
+            <ul class="instruction-list">
+              <li>Check the PSA's official instructions for requesting a birth certificate.</li>
+              <li>Choose an authorized online ordering channel or an available in-person service.</li>
+              <li>Confirm the current ordering, identity, delivery, and fee-waiver conditions before applying.</li>
+            </ul>
+            <div class="source-box">
+              <p class="source-label">Official source</p>
+              <a class="source-link" href="https://psa.gov.ph/birth-certificate"
+                 target="_blank" rel="noopener noreferrer">PSA: Birth Certificate</a>
+              <a class="online-link" href="https://www.psaserbilis.com.ph"
+                 target="_blank" rel="noopener noreferrer">
+                Online request: PSA Serbilis &#8599;
+              </a>
+            </div>
+            <p class="inline-note">
+              Do not assume online service or delivery charges are waived. Verify current terms with the provider.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 3 -->
+        <article class="step-card" id="step-3">
+          <div class="step-top">
+            <input class="step-checkbox" type="checkbox" id="complete-3"
+                   aria-label="Mark Apply for NBI clearance as completed">
+            <div class="step-content">
+              <h3 class="step-title">Apply for NBI clearance</h3>
+              <p class="step-description">
+                Complete the online application, then attend your scheduled branch appointment.
+              </p>
+              <div class="mode-pills">
+                <span class="mode-pill">ONLINE APPLICATION</span>
+                <span class="mode-pill">IN PERSON APPOINTMENT</span>
+              </div>
+            </div>
+          </div>
+          <div class="step-controls">
+            <button class="step-toggle" type="button" aria-expanded="false"
+                    aria-controls="details-3">
+              <span class="chevron" aria-hidden="true"></span>
+              <span>Quick preview</span>
+            </button>
+            <a class="detail-button" href="#details-3"
+               data-detail-link="details-3">View details <span aria-hidden="true">&#8594;</span></a>
+          </div>
+          <div class="step-details" id="details-3" hidden>
+            <p class="details-label">What to do</p>
+            <ul class="instruction-list">
+              <li>Register or sign in through the official NBI clearance portal.</li>
+              <li>Complete your applicant information and follow the first-time-jobseeker application instructions.</li>
+              <li>Select a branch and appointment slot when prompted.</li>
+              <li>Confirm the documents to bring, including your barangay certification and any required undertaking.</li>
+              <li>Attend the appointment for the in-person processing steps.</li>
+            </ul>
+            <span class="branch-label">
+              Sample branch: NBI Clearance Center, Ermita, Manila
+            </span>
+            <div class="source-box">
+              <p class="source-label">Official source</p>
+              <a class="source-link"
+                 href="https://nbi.gov.ph/how-to-apply-nbi-clearance/"
+                 target="_blank" rel="noopener noreferrer">
+                NBI: How to Apply for Clearance
+              </a>
+              <a class="online-link" href="https://clearance.nbi.gov.ph"
+                 target="_blank" rel="noopener noreferrer">
+                Online application: NBI Clearance Portal &#8599;
+              </a>
+            </div>
+            <p class="inline-note">
+              Appointment availability, required documents, and the application of the fee waiver must be confirmed through official NBI instructions.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 4 -->
+        <article class="step-card" id="step-4">
+          <div class="step-top">
+            <input class="step-checkbox" type="checkbox" id="complete-4"
+                   aria-label="Mark Register with SSS as completed">
+            <div class="step-content">
+              <h3 class="step-title">Register with SSS</h3>
+              <p class="step-description">
+                Apply online for an SS number if you do not already have one.
+              </p>
+              <div class="mode-pills">
+                <span class="mode-pill">ONLINE</span>
+              </div>
+            </div>
+          </div>
+          <div class="step-controls">
+            <button class="step-toggle" type="button" aria-expanded="false"
+                    aria-controls="details-4">
+              <span class="chevron" aria-hidden="true"></span>
+              <span>Quick preview</span>
+            </button>
+            <a class="detail-button" href="#details-4"
+               data-detail-link="details-4">View details <span aria-hidden="true">&#8594;</span></a>
+          </div>
+          <div class="step-details" id="details-4" hidden>
+            <p class="details-label">What to do</p>
+            <ul class="instruction-list">
+              <li>Check whether you already have an SS number.</li>
+              <li>If you do not, follow the official online registration instructions.</li>
+              <li>Provide the information requested by SSS and follow the verification instructions.</li>
+              <li>Confirm which membership or coverage category applies to your employment situation.</li>
+            </ul>
+            <div class="source-box">
+              <p class="source-label">Official source</p>
+              <a class="source-link"
+                 href="https://www.sss.gov.ph/become-an-sss-member"
+                 target="_blank" rel="noopener noreferrer">
+                SSS: Become an SSS Member
+              </a>
+            </div>
+            <p class="inline-note">
+              Do not create another registration if you already have an SS number. Follow SSS guidance for your existing record.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 5 -->
+        <article class="step-card" id="step-5">
+          <div class="step-top">
+            <input class="step-checkbox" type="checkbox" id="complete-5"
+                   aria-label="Mark Register with PhilHealth as completed">
+            <div class="step-content">
+              <h3 class="step-title">Register with PhilHealth</h3>
+              <p class="step-description">
+                Check your membership status and follow the applicable registration instructions.
+              </p>
+              <div class="mode-pills">
+                <span class="mode-pill">OFFICIAL ONLINE SERVICES</span>
+              </div>
+            </div>
+          </div>
+          <div class="step-controls">
+            <button class="step-toggle" type="button" aria-expanded="false"
+                    aria-controls="details-5">
+              <span class="chevron" aria-hidden="true"></span>
+              <span>Quick preview</span>
+            </button>
+            <a class="detail-button" href="#details-5"
+               data-detail-link="details-5">View details <span aria-hidden="true">&#8594;</span></a>
+          </div>
+          <div class="step-details" id="details-5" hidden>
+            <p class="details-label">What to do</p>
+            <ul class="instruction-list">
+              <li>Review the official PhilHealth membership services and current instructions.</li>
+              <li>Check whether you already have a PhilHealth Identification Number.</li>
+              <li>Follow the appropriate registration or record-update procedure for your situation.</li>
+              <li>Confirm whether further documents or in-person steps are required.</li>
+            </ul>
+            <div class="source-box">
+              <p class="source-label">Official source</p>
+              <a class="source-link"
+                 href="https://www.philhealth.gov.ph/services/"
+                 target="_blank" rel="noopener noreferrer">
+                PhilHealth: Online Services
+              </a>
+            </div>
+            <p class="inline-note">
+              A member portal login alone does not create a new membership or identification number. Verify your status using official instructions.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 6 -->
+        <article class="step-card" id="step-6">
+          <div class="step-top">
+            <input class="step-checkbox" type="checkbox" id="complete-6"
+                   aria-label="Mark Register with Pag-IBIG Fund as completed">
+            <div class="step-content">
+              <h3 class="step-title">Register with Pag-IBIG Fund</h3>
+              <p class="step-description">
+                Check your membership status and complete the applicable registration process.
+              </p>
+              <div class="mode-pills">
+                <span class="mode-pill">ONLINE REGISTRATION</span>
+              </div>
+            </div>
+          </div>
+          <div class="step-controls">
+            <button class="step-toggle" type="button" aria-expanded="false"
+                    aria-controls="details-6">
+              <span class="chevron" aria-hidden="true"></span>
+              <span>Quick preview</span>
+            </button>
+            <a class="detail-button" href="#details-6"
+               data-detail-link="details-6">View details <span aria-hidden="true">&#8594;</span></a>
+          </div>
+          <div class="step-details" id="details-6" hidden>
+            <p class="details-label">What to do</p>
+            <ul class="instruction-list">
+              <li>Open the official Pag-IBIG Fund website.</li>
+              <li>Find the Membership Registration service.</li>
+              <li>Follow the current registration instructions and retain any tracking or reference details provided.</li>
+              <li>Confirm the applicable membership category and whether additional steps are required.</li>
+            </ul>
+            <div class="source-box">
+              <p class="source-label">Official source</p>
+              <a class="source-link"
+                 href="https://www.pagibigfund.gov.ph/"
+                 target="_blank" rel="noopener noreferrer">
+                Pag-IBIG Fund: Official Website
+              </a>
+            </div>
+            <p class="inline-note">
+              Use the official homepage to locate the current registration service. Confirm your existing membership status and applicable procedure.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="requirements-checklist" aria-labelledby="requirements-heading"
+             style="margin-top: 24px;">
+      <div class="section-heading">
+        <h2 id="requirements-heading">Requirements checklist</h2>
+      </div>
+      <p class="helper-text">
+        Use this overview to organize relevant records. This is not a universal list of mandatory documents.
+      </p>
+      <div style="background:#FFFFFF;border:1px solid #E5E7EB;border-radius:15px;padding:13px;">
+        <p style="margin:0 0 10px;font-size:12px;line-height:1.5;color:#6B7280;">
+          Mark the items you already have. Confirm the actual requirements with each issuing office.
+        </p>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #E5E7EB;">
+          <input class="step-checkbox" type="checkbox" id="req-barangay" aria-label="I have my barangay first-time-jobseeker certification">
+          <label for="req-barangay" style="font-size:12px;line-height:1.5;">Barangay first-time-jobseeker certification</label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #E5E7EB;">
+          <input class="step-checkbox" type="checkbox" id="req-psa" aria-label="I have my PSA birth certificate if needed">
+          <label for="req-psa" style="font-size:12px;line-height:1.5;">PSA birth certificate, if needed</label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #E5E7EB;">
+          <input class="step-checkbox" type="checkbox" id="req-nbi" aria-label="I have confirmed NBI clearance requirements">
+          <label for="req-nbi" style="font-size:12px;line-height:1.5;">NBI clearance application requirements confirmed</label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #E5E7EB;">
+          <input class="step-checkbox" type="checkbox" id="req-sss" aria-label="I have checked my SSS number status">
+          <label for="req-sss" style="font-size:12px;line-height:1.5;">SSS number or existing membership status checked</label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #E5E7EB;">
+          <input class="step-checkbox" type="checkbox" id="req-philhealth" aria-label="I have checked my PhilHealth membership status">
+          <label for="req-philhealth" style="font-size:12px;line-height:1.5;">PhilHealth identification number or membership status checked</label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;">
+          <input class="step-checkbox" type="checkbox" id="req-pagibig" aria-label="I have checked my Pag-IBIG membership status">
+          <label for="req-pagibig" style="font-size:12px;line-height:1.5;">Pag-IBIG membership status checked</label>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-disclaimer">
+      Information shown is for prototyping purposes only. Confirm current requirements with the official source.
+      <br>
+      AGILA provides informational guidance and does not process government applications.
+    </footer>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a class="nav-item" href="#main" aria-label="Home">
+      <span class="nav-icon" aria-hidden="true">&#8962;</span>
+      <span>Home</span>
+    </a>
+    <a class="nav-item selected" href="#main" aria-current="page" aria-label="My roadmaps, selected">
+      <span class="nav-icon" aria-hidden="true">&#9776;</span>
+      <span>My roadmaps</span>
+    </a>
+    <a class="nav-item" href="#requirements-checklist" aria-label="Explore">
+      <span class="nav-icon" aria-hidden="true">&#9906;</span>
+      <span>Explore</span>
+    </a>
+    <a class="nav-item" href="#main" aria-label="Profile">
+      <span class="nav-icon" aria-hidden="true">&#9787;</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const cards = document.querySelectorAll(".step-card");
+
+      cards.forEach(function (card) {
+        const checkbox = card.querySelector(".step-checkbox");
+        const toggle = card.querySelector(".step-toggle");
+        const details = card.querySelector(".step-details");
+        const detailLink = card.querySelector("[data-detail-link]");
+
+        function updateCompletion() {
+          card.classList.toggle("completed", checkbox.checked);
+        }
+
+        function setExpanded(expanded) {
+          details.hidden = !expanded;
+          toggle.setAttribute("aria-expanded", String(expanded));
+          toggle.querySelector("span:last-child").textContent =
+            expanded ? "Hide preview" : "Quick preview";
+        }
+
+        checkbox.addEventListener("change", updateCompletion);
+
+        toggle.addEventListener("click", function () {
+          setExpanded(toggle.getAttribute("aria-expanded") !== "true");
+        });
+
+        detailLink.addEventListener("click", function (event) {
+          event.preventDefault();
+          setExpanded(true);
+          details.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+            block: "nearest"
+          });
+        });
+
+        updateCompletion();
+      });
+
+      const checklistButton = document.getElementById("checklist-button");
+      const checklistSection = document.getElementById("requirements-checklist");
+
+      checklistButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        checklistSection.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "auto"
+            : "smooth",
+          block: "start"
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
