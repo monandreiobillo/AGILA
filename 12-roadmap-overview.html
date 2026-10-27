@@ -91,7 +91,7 @@ a:focus-visible{border-radius:4px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
 .card+.card{margin-top:12px}
 .card-label{font-size:12px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.notice{display:flex;gap:10px;align-items:flex-start;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5}
+.notice{display:flex;gap:10px;align-items:flex-start;border-radius:14px;padding:12px 40px 12px 14px;font-size:13px;line-height:1.5;position:relative}
 .notice svg{width:18px;height:18px;flex:none;margin-top:1px}
 .notice p{font-size:13px}
 .notice p+p,.notice ul,.notice ul+p{margin-top:6px}
@@ -100,6 +100,10 @@ a:focus-visible{border-radius:4px}
 .notice strong{font-weight:650}
 .notice-rose{background:var(--rose);color:#5B1F22;border:1px solid #F5C9C9}
 .notice-rose a{color:#8E1B1B}
+.notice-dismiss{position:absolute;top:8px;right:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  padding:0;border:0;border-radius:999px;background:transparent;color:inherit;cursor:pointer}
+.notice-dismiss:hover{background:rgba(107,37,40,.1)}
+.notice-dismiss svg{width:16px;height:16px;margin:0}
 .notice-info{background:var(--info-bg);color:#374151;border:1px solid var(--border)}
 .notice-amber{background:var(--amber-bg);color:var(--amber-text);border:1px solid var(--amber-border)}
 .badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;line-height:1;
@@ -240,7 +244,8 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
 
   <a class="btn btn-secondary" href="14-checklist.html" style="margin-top:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg>Requirements checklist</a>
 
-  <div style="margin-top:16px"><aside class="notice notice-rose" aria-label="First-time jobseeker fee waiver">
+  <div style="margin-top:16px" id="fee-waiver"><aside class="notice notice-rose" aria-label="First-time jobseeker fee waiver">
+<button class="notice-dismiss" type="button" aria-label="Dismiss fee waiver notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg>
 <div>
 <p><strong>You may qualify for a fee waiver.</strong> Under RA 11261, fees for certain government documents
@@ -260,7 +265,7 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
     <p class="helper" style="margin-top:2px">Tap a step to see details. Check it off when you're done.</p>
     <ol class="tasklist steps">
       <li class="step task" id="step-1">
-  <input class="check" type="checkbox" id="chk-1" data-row="step-1" aria-label="Mark step 1 as done: Get barangay certification">
+  <input class="check" type="checkbox" id="chk-1" data-row="step-1" aria-label="Mark step 1 as done: Get barangay certification" checked>
   <div class="step-main">
     <button class="step-toggle" type="button" aria-expanded="true" aria-controls="body-1">
       <span class="step-title"><span class="step-n">Step 1</span><span class="step-t">Get barangay certification</span></span>
@@ -275,7 +280,7 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
     </div>
   </div>
 </li><li class="step task" id="step-2">
-  <input class="check" type="checkbox" id="chk-2" data-row="step-2" aria-label="Mark step 2 as done: Get a PSA birth certificate">
+  <input class="check" type="checkbox" id="chk-2" data-row="step-2" aria-label="Mark step 2 as done: Get a PSA birth certificate" checked>
   <div class="step-main">
     <button class="step-toggle" type="button" aria-expanded="false" aria-controls="body-2">
       <span class="step-title"><span class="step-n">Step 2</span><span class="step-t">Get a PSA birth certificate</span></span>
@@ -292,12 +297,12 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
 </li><li class="step task" id="step-3">
   <input class="check" type="checkbox" id="chk-3" data-row="step-3" aria-label="Mark step 3 as done: Apply for NBI clearance">
   <div class="step-main">
-    <button class="step-toggle" type="button" aria-expanded="false" aria-controls="body-3">
+    <button class="step-toggle" type="button" aria-expanded="true" aria-controls="body-3">
       <span class="step-title"><span class="step-n">Step 3</span><span class="step-t">Apply for NBI clearance</span></span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="chev"><path d="M6 9l6 6 6-6"/></svg>
     </button>
     <div class="chips step-chips"><span class="badge badge-online"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Online</span><span class="badge badge-person"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 21V5l8-3 8 3v16"/><path d="M9 21v-4h6v4M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01"/></svg>In person</span><span class="badge badge-waiver">Fee may be waived</span></div>
-    <div class="step-body" id="body-3" hidden>
+    <div class="step-body" id="body-3">
       <p class="step-desc">Register and book an appointment online, then visit your chosen NBI clearance site for photo and biometrics.</p>
       <p class="card-label" style="margin:12px 0 2px">Official sources</p>
       <div class="src"><a href="https://clearance.nbi.gov.ph/" target="_blank" rel="noopener noreferrer">NBI Clearance online portal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a> <a href="https://firsttimejobseekers.nbi.gov.ph/" target="_blank" rel="noopener noreferrer">NBI first-time jobseeker service<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
@@ -389,6 +394,10 @@ document.querySelectorAll('.step-toggle').forEach(function(t){
     t.setAttribute('aria-expanded',String(!open));
     document.getElementById(t.getAttribute('aria-controls')).hidden=open;
   });
+});
+
+document.querySelector('.notice-dismiss').addEventListener('click',function(){
+  document.getElementById('fee-waiver').hidden=true;
 });
 </script>
 </body>
