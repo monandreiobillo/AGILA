@@ -56,7 +56,7 @@ a:focus-visible{border-radius:4px}
 .text-btn{background:none;border:0;color:var(--muted);font:inherit;font-size:14px;font-weight:600;
   padding:10px 8px;cursor:pointer;border-radius:8px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
 .text-btn:hover{color:var(--text)}
-.brandbar{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad) 6px;min-height:56px}
+.brandbar{display:flex;align-items:center;justify-content:center;padding:14px var(--pad) 6px;min-height:56px}
 .wordmark{display:inline-flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.08em;font-size:14px;color:var(--burgundy)}
 .wordmark .mark{width:26px;height:26px;border-radius:8px;border:1.5px dashed #C9A3A5;display:inline-flex;
   align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#A7787B;letter-spacing:0}
@@ -182,7 +182,7 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
 /* ---------- Bottom nav ---------- */
 .bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.97);
   border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom)}
-.bottom-nav ul{list-style:none;margin:0 auto;padding:0 6px;max-width:430px;display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
+.bottom-nav ul{list-style:none;margin:0 auto;padding:0 6px;max-width:430px;display:grid;grid-template-columns:repeat(3,1fr);height:var(--nav-h)}
 .bottom-nav a{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
   color:var(--muted);text-decoration:none;font-size:11.5px;font-weight:600;border-radius:12px}
 .bottom-nav a svg{width:22px;height:22px}
@@ -205,13 +205,15 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
 .goal-input{width:100%;border:0;resize:none;font:inherit;font-size:17px;line-height:1.45;color:var(--text);background:transparent;padding:2px;min-height:96px}
 .goal-input:focus-visible{box-shadow:none}
 .goal-foot{border-top:1px solid var(--border);padding-top:10px}
-.saved-entry{display:flex;align-items:center;gap:12px;margin-top:16px;padding:12px 14px;min-height:60px;background:var(--surface);
-  border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text)}
-.saved-entry:hover{border-color:#D4D4D8;color:var(--text)}
-.se-ic{width:36px;height:36px;border-radius:10px;background:var(--rose);color:var(--red);display:flex;align-items:center;justify-content:center;flex:none}
-.se-ic svg{width:18px;height:18px}
-.saved-entry .opt-text{flex:1}
-.se-arrow{width:18px;height:18px;color:var(--muted);flex:none}
+.services{margin-top:28px}
+.services h2{font-size:20px}
+.services .lede{margin-top:8px}
+.service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.service-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.service-image{height:92px;display:flex;align-items:center;justify-content:center;background:var(--rose);
+  border-bottom:1px solid var(--border);color:var(--burgundy);font-size:12px;font-weight:650}
+.service-image img{display:block;width:100%;height:100%;padding:12px;object-fit:contain}
+.service-card h3{padding:12px;font-size:14px;line-height:1.35}
 </style>
 </head>
 <body>
@@ -219,7 +221,6 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
 
 <header class="brandbar">
   <span class="wordmark"><span class="mark" aria-hidden="true">LOGO</span>AGILA</span>
-  <a class="icon-btn" href="#" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
 </header>
 <main>
   <h1 style="margin-top:14px">What do you want to get done?</h1>
@@ -231,20 +232,45 @@ legend{padding:0;font-size:18px;font-weight:650;line-height:1.3;margin-bottom:4p
     <div class="goal-foot">
       <span class="helper">Don't include ID numbers or other personal details.</span>
     </div>
-    <button class="btn btn-primary" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Build my roadmap</button>
+    <a class="btn btn-primary" href="08-clarify-sector.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Build my roadmap</a>
   </form>
 
-  <a class="saved-entry" href="#">
-    <span class="se-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span>
-    <span class="opt-text"><span class="opt-title">Saved roadmaps</span>
-    <span class="opt-desc">Pick up where you left off</span></span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="se-arrow"><path d="M9 6l6 6-6 6"/></svg>
-  </a>
+  <section class="services" aria-labelledby="services-heading">
+    <h2 id="services-heading">Start with these common services</h2>
+    <p class="lede">Explore essential government services that can help you get started.</p>
+    <div class="service-grid">
+      <article class="service-card">
+        <div class="service-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Philippine%20Statistics%20Authority.svg" alt="Philippine Statistics Authority logo"></div>
+        <h3>Get a PSA Birth Certificate</h3>
+      </article>
+      <article class="service-card">
+        <div class="service-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/PSA%20PhilSys%20logo.png" alt="PhilSys logo"></div>
+        <h3>Apply for National ID</h3>
+      </article>
+      <article class="service-card">
+        <div class="service-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Seal%20of%20the%20Department%20of%20Foreign%20Affairs%20of%20the%20Philippines.svg" alt="Department of Foreign Affairs seal"></div>
+        <h3>Get a Philippine Passport</h3>
+      </article>
+      <article class="service-card">
+        <div class="service-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Social%20Security%20System%20%28SSS%29.svg" alt="Social Security System logo"></div>
+        <h3>Become an SSS Member</h3>
+      </article>
+      <article class="service-card">
+        <div class="service-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/National%20Bureau%20of%20Investigation%20%28NBI%29.svg" alt="National Bureau of Investigation logo"></div>
+        <h3>Apply for NBI Clearance</h3>
+      </article>
+      <article class="service-card">
+        <div class="service-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Logo%20of%20the%20Bureau%20of%20Internal%20Revenue.png" alt="Bureau of Internal Revenue logo"></div>
+        <h3>File Income Tax Returns</h3>
+      </article>
+    </div>
+  </section>
+
 </main>
 
 </div>
 <nav class="bottom-nav" aria-label="Main">
-<ul><li><a href="#" aria-current="page"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></span>Home</a></li><li><a href="#"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span>My roadmaps</a></li><li><a href="#"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Explore</a></li><li><a href="#"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Profile</a></li></ul>
+<ul><li><a href="07-home.html" aria-current="page"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></span>Home</a></li><li><a href="15-saved-roadmaps.html"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span>My roadmaps</a></li><li><a href="#"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Profile</a></li></ul>
 </nav>
 
 </body>
